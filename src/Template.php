@@ -1066,6 +1066,14 @@ class Template
                 }
 
                 switch (strtolower($fun)) {
+                    case 'implode':
+                        // 确保 implode 的第一个参数是分隔符，第二个是数组
+                        if (isset($args[1])) {
+                            $name = "$fun($args[1], $name)";
+                        } else {
+                            $name = "$fun($name)";
+                        }
+                        break;
                     case 'raw':
                         break;
                     case 'htmlentities':
